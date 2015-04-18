@@ -24,7 +24,14 @@ class PhalconRestDI extends \Phalcon\DI\FactoryDefault
 			return $fractal;
 		});
 
-		$di->setShared('phpmailer', function() use ($di){
+		$di->set('paginator', function () use ($di) {
+			$paginator = new \OA\PhalconRest\Structure\PhalconPaginatorAdapter();
+			$paginator->setPerPage($di->get('config')->application->perPage);
+
+			return $paginator;
+		});
+
+		$di->setShared('phpmailer', function() use ($di) {
 
 			$phpmailer = $di->get('config')->phalconRest->phpmailer;
 

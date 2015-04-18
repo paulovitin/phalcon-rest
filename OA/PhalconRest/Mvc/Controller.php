@@ -36,10 +36,15 @@ class Controller extends \Phalcon\Mvc\Controller
 		return $this->fractal->createData($resource)->toArray();
 	}
 
-	public function createCollection($collection, $callback, $resource_key)
+	public function createCollection($collection, $callback, $resource_key, $paginator)
 	{
-
 		$resource = new Collection($collection, $callback, $resource_key);
+
+		if ($paginator) {
+			$this->paginator->setPaginator($paginator);
+			$resource->setPaginator($this->paginator);
+		}
+
 		return $this->fractal->createData($resource)->toArray();
 	}
 }

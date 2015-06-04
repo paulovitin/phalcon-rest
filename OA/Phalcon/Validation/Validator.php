@@ -81,7 +81,8 @@ class Validator
 	{
 
 		$validators = [
-			'Email'	 			=> 'Phalcon\Validation\Validator\Email', // email
+			'Email'	 			=> 'Phalcon\Validation\Validator\Email', // email,
+			'Url'	 			=> 'Phalcon\Validation\Validator\Url', // url
 			'PresenceOf'	 	=> 'Phalcon\Validation\Validator\PresenceOf', // required
 			'StringLength'	 	=> 'Phalcon\Validation\Validator\StringLength', // min, max
 			'Regex' 			=> 'Phalcon\Validation\Validator\Regex' // pattern
@@ -142,6 +143,9 @@ class Validator
 						break;
 					case 'email':
 						$this->configureValidator('Email', $rule_name, $rule_value);
+						break;
+					case 'url':
+						$this->configureValidator('Url', $rule_name, $rule_value);
 						break;
 					case 'required':
 						$this->configureValidator('PresenceOf', $rule_name, $rule_value);
